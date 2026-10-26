@@ -1,6 +1,6 @@
 
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
+import Navbar from "./Components/Navbar";
+import Hero from "./Components/Hero";
 import MenuSection from "./sections/MenuSection";
 import StorySection from "./sections/StorySection";
 import GallerySection from "./sections/GallerySection";
