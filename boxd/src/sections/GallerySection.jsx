@@ -1,5 +1,5 @@
 
-import { galleryImages } from "../data/Gallery";
+import { galleryImages } from "../data/gallery";
 import FoodImage from "../Components/FoodImage";
 
 export default function GallerySection() {
