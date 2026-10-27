@@ -1,4 +1,6 @@
 
+import { ALLERGEN_STATUS } from "./allergens";
+
 export const categories = [
   "All Boxes",
   "Chicken",
@@ -6,6 +8,14 @@ export const categories = [
   "Seafood",
   "Vegetarian",
 ];
+
+const pendingAllergens = () => ({
+  status: ALLERGEN_STATUS.PENDING,
+  contains: [],
+  crossContact: [],
+  crossContactNote: "",
+  reviewedAt: null,
+});
 
 export const menuItems = [
   {
@@ -16,8 +26,16 @@ export const menuItems = [
       "Teriyaki chicken, steamed rice, sesame broccoli, and pickled vegetables.",
     price: 14,
     image: "/images/og-box.jpg",
-    imageAlt: "Teriyaki chicken bento with rice and vegetables",
+    imageAlt:
+      "Teriyaki chicken bento with rice and vegetables",
     tags: ["High Protein"],
+    allergenInfo: {
+      status: ALLERGEN_STATUS.VERIFIED,
+      contains: ["soy", "sesame"],
+      crossContact: [],
+      crossContactNote: "",
+      reviewedAt: null,
+    }
   },
   {
     id: 2,
@@ -27,8 +45,16 @@ export const menuItems = [
       "Crispy chicken katsu, rice, crunchy slaw, and tangy house sauce.",
     price: 15,
     image: "/images/crunch-time.jpg",
-    imageAlt: "Crispy chicken katsu bento with rice and slaw",
-    tags: ["Contains Gluten"],
+    imageAlt:
+      "Crispy chicken katsu bento with rice and slaw",
+    tags: [],
+    allergenInfo: {
+      status: ALLERGEN_STATUS.VERIFIED,
+      contains: ["wheat", "soy", "sesame", "gluten"],
+      crossContact: [],
+      crossContactNote: "",
+      reviewedAt: null,
+    },
   },
   {
     id: 3,
@@ -38,8 +64,10 @@ export const menuItems = [
       "Soy-glazed beef, garlic rice, roasted carrots, and sesame greens.",
     price: 17,
     image: "/images/big-beef.jpg",
-    imageAlt: "Soy-glazed beef bento with garlic rice and carrots",
+    imageAlt:
+      "Soy-glazed beef bento with garlic rice and carrots",
     tags: ["High Protein"],
+    allergenInfo: pendingAllergens(),
   },
   {
     id: 4,
@@ -49,8 +77,10 @@ export const menuItems = [
       "Citrus-glazed salmon, rice, cucumber, and sesame greens.",
     price: 18,
     image: "/images/ocean-drive.jpg",
-    imageAlt: "Salmon bento with rice and cucumber",
-    tags: ["Contains Fish"],
+    imageAlt:
+      "Salmon bento with rice and cucumber",
+    tags: [],
+    allergenInfo: pendingAllergens(),
   },
   {
     id: 5,
@@ -60,7 +90,9 @@ export const menuItems = [
       "Crispy tofu, rice, edamame, cucumber, and sesame dressing.",
     price: 14,
     image: "/images/green-machine.jpg",
-    imageAlt: "Tofu bento with rice, edamame, and cucumber",
+    imageAlt:
+      "Tofu bento with rice, edamame, and cucumber",
     tags: ["Vegetarian"],
+    allergenInfo: pendingAllergens(),
   },
 ];

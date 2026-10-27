@@ -1,41 +1,54 @@
 
+import AllergenTags from "./AllergenTags";
+
 export default function MenuCard({ item }) {
   return (
-    <article className="group overflow-hidden border-2 border-charcoal bg-cream">
+    <article className="flex h-full flex-col overflow-hidden border-2 border-charcoal bg-white text-charcoal">
       <div className="aspect-square overflow-hidden bg-coral">
         <img
           src={item.image}
           alt={item.imageAlt}
           loading="lazy"
           decoding="async"
-          className="h-full w-full object-cover motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-105"
+          className="h-full w-full object-cover"
         />
       </div>
 
-      <div className="p-5">
+      <div className="flex flex-1 flex-col p-5 md:p-6">
         <div className="flex items-start justify-between gap-3">
-          <h3 className="font-display text-xl leading-tight md:text-2xl">
+          <h3 className="font-display text-2xl leading-tight md:text-3xl">
             {item.name}
           </h3>
 
-          <span className="shrink-0 font-bold">
+          <span className="shrink-0 bg-mustard px-3 py-2 text-sm font-bold">
             ${item.price.toFixed(2)}
           </span>
         </div>
 
-        <p className="mt-3 text-sm leading-relaxed text-forest">
+        <p className="mt-4 leading-relaxed">
           {item.description}
         </p>
 
-        <div className="mt-5 flex flex-wrap gap-2">
-          {item.tags.map((tag) => (
-            <span
-              key={tag}
-              className="border border-forest px-3 py-1 text-xs font-bold uppercase"
-            >
-              {tag}
-            </span>
-          ))}
+        {item.tags?.length > 0 && (
+          <ul
+            className="mt-4 flex flex-wrap gap-2"
+            aria-label="Menu highlights"
+          >
+            {item.tags.map((tag) => (
+              <li
+                key={tag}
+                className="bg-forest px-3 py-2 text-xs font-bold uppercase text-white"
+              >
+                {tag}
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <div className="mt-auto pt-4">
+          <AllergenTags
+            allergenInfo={item.allergenInfo}
+          />
         </div>
       </div>
     </article>
