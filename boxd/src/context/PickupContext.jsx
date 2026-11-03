@@ -31,7 +31,7 @@ export function PickupProvider({ children }) {
   }
 
   return (
-    <PickupContext.Provider
+    <PickUpContext.Provider
       value={{
         pickupDate,
         pickupTime,
@@ -41,12 +41,12 @@ export function PickupProvider({ children }) {
       }}
     >
       {children}
-    </PickupContext.Provider>
+    </PickUpContext.Provider>
   );
 }
 
 export function usePickup() {
-  const context = useContext(PickupContext);
+  const context = useContext(PickUpContext);
 
   if (!context) {
     throw new Error(
