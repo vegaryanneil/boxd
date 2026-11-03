@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { usePickup } from "../context/PickUpContext";
+import { usePickup } from "../context/PickupContext";
 import {
   getPickupDates,
   getPickupSlots,

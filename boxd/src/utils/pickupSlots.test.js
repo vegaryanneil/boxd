@@ -12,7 +12,7 @@ test("creates five calendar dates excluding Sunday", () => {
   // Monday, November 2, 2026
   const now = new Date(2026, 10, 2, 9, 0);
 
-  const dates = getPickupDates(now);
+  const dates = getPickUpDates(now);
 
   assert.equal(dates.length, 5);
   assert.equal(dates[0].value, "2026-11-02");

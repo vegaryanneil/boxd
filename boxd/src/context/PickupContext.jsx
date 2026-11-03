@@ -5,9 +5,9 @@ import {
   useState,
 } from "react";
 
-const PickUpContext = createContext(null);
+const PickupContext = createContext(null);
 
-export function PickUpProvider({ children }) {
+export function PickupProvider({ children }) {
   const [pickupDate, setPickupDate] =
     useState("");
 
@@ -31,7 +31,7 @@ export function PickUpProvider({ children }) {
   }
 
   return (
-    <PickUpContext.Provider
+    <PickupContext.Provider
       value={{
         pickupDate,
         pickupTime,
@@ -41,12 +41,12 @@ export function PickUpProvider({ children }) {
       }}
     >
       {children}
-    </PickUpContext.Provider>
+    </PickupContext.Provider>
   );
 }
 
 export function usePickup() {
-  const context = useContext(PickUpContext);
+  const context = useContext(PickupContext);
 
   if (!context) {
     throw new Error(

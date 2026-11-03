@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import { CartProvider } from "./context/CartContext";
-import { PickUpProvider } from "./context/PickUpContext";
+import { PickupProvider } from "./context/PickupContext";
 import "./index.css";
 
 ReactDOM.createRoot(
@@ -11,9 +11,9 @@ ReactDOM.createRoot(
 ).render(
   <React.StrictMode>
     <CartProvider>
-      <PickUpProvider>
+      <PickupProvider>
         <App />
-      </PickUpProvider>
+      </PickupProvider>
     </CartProvider>
   </React.StrictMode>
 );

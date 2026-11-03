@@ -1,7 +1,7 @@
 
 import { useCart } from "../context/CartContext";
 import PickupScheduler from "./PickupScheduler";
-import { usePickup } from "../context/PickUpContext";
+import { usePickup } from "../context/PickupContext";
 
 export default function CartDrawer() {
   const {
