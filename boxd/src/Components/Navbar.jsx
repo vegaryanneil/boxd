@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import CartLink from "./CartLink";
 
 const links = [
   { label: "Menu", href: "#menu" },
@@ -47,6 +48,7 @@ export default function Navbar() {
         >
           View Menu ↗
         </a>
+        <CartLink />
 
         <button
           type="button"

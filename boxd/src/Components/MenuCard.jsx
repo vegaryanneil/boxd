@@ -1,7 +1,10 @@
 
 import AllergenTags from "./AllergenTags";
+import { useCart } from "../context/CartContext";
 
 export default function MenuCard({ item }) {
+  const { addToCart } = useCart();
+
   return (
     <article className="flex h-full flex-col overflow-hidden border-2 border-charcoal bg-white text-charcoal">
       <div className="aspect-square overflow-hidden bg-coral">
@@ -49,6 +52,14 @@ export default function MenuCard({ item }) {
           <AllergenTags
             allergenInfo={item.allergenInfo}
           />
+
+          <button
+            type="button"
+            onClick={() => addToCart(item)}
+            className="mt-5 min-h-12 w-full bg-forest px-5 py-4 font-bold uppercase text-white transition-colors hover:bg-coral hover:text-charcoal focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-forest"
+          >
+            Add to Order — ${item.price.toFixed(2)}
+          </button>
         </div>
       </div>
     </article>
