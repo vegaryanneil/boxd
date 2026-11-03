@@ -7,7 +7,7 @@ import {
 
 const PickUpContext = createContext(null);
 
-export function PickupProvider({ children }) {
+export function PickUpProvider({ children }) {
   const [pickupDate, setPickupDate] =
     useState("");
 

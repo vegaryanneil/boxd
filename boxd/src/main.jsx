@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import { CartProvider } from "./context/CartContext";
-import { PickupProvider } from "./context/PickUpContext";
+import { PickuUProvider } from "./context/PickUpContext";
 import "./index.css";
 
 ReactDOM.createRoot(
