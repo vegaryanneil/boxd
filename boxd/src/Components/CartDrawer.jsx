@@ -1,5 +1,7 @@
 
 import { useCart } from "../context/CartContext";
+import PickupScheduler from "./PickupScheduler";
+import { usePickup } from "../context/PickUpContext";
 
 export default function CartDrawer() {
   const {
@@ -10,6 +12,7 @@ export default function CartDrawer() {
     removeFromCart,
     clearCart,
   } = useCart();
+  const { pickupDate, pickupTime } = usePickup();
 
   return (
     <section
@@ -128,10 +131,11 @@ export default function CartDrawer() {
                 <span className="font-bold uppercase">
                   Subtotal
                 </span>
-
+                
                 <span className="font-display text-3xl">
                   ${subtotal.toFixed(2)}
                 </span>
+                <PickupScheduler/>``
               </div>
 
               <p className="mt-3 text-sm">
@@ -147,12 +151,14 @@ export default function CartDrawer() {
               </p>
 
               <div className="mt-6 flex flex-wrap gap-3">
-                <button
-                  type="button"
-                  disabled
-                  className="min-h-12 flex-1 bg-forest px-6 py-4 font-bold uppercase text-white opacity-60"
-                >
-                  Checkout — Coming Soon
+               <button
+                    type="button"
+                    disabled
+                    className="min-h-12 flex-1 bg-forest px-6 py-4 font-bold uppercase text-white opacity-60"
+                    >
+                    {pickupDate && pickupTime
+                        ? "Checkout — Coming Soon"
+                        : "Select Pickup Time to Continue"}
                 </button>
 
                 <button
