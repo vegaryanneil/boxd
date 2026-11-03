@@ -5,7 +5,7 @@ import {
   useState,
 } from "react";
 
-const PickupContext = createContext(null);
+const PickUpContext = createContext(null);
 
 export function PickupProvider({ children }) {
   const [pickupDate, setPickupDate] =
