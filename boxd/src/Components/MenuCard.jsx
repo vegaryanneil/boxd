@@ -1,12 +1,54 @@
 
+import { useEffect, useRef, useState } from "react";
 import AllergenTags from "./AllergenTags";
 import { useCart } from "../context/CartContext";
+import AddToCartButton from "./AddToCartButton";
 
 export default function MenuCard({ item }) {
-  const { addToCart } = useCart();
+  const { cart, addToCart } = useCart();
+
+  const [justAdded, setJustAdded] = useState(false);
+  const timeoutRef = useRef(null);
+
+  // Find how many of this item are already in the cart.
+  const cartItem = cart.find(
+    (cartItem) => cartItem.id === item.id
+  );
+
+  const quantityInCart = cartItem?.quantity ?? 0;
+  const atLimit = quantityInCart >= 20;
+
+  function handleAddToCart() {
+    if (atLimit) return;
+
+    addToCart(item);
+
+    // Show immediate confirmation.
+    setJustAdded(true);
+
+    // Reset the confirmation timer after each click.
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+
+    timeoutRef.current = setTimeout(() => {
+      setJustAdded(false);
+      timeoutRef.current = null;
+    }, 1500);
+  }
+
+  // Clean up the timer when the component unmounts.
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   return (
-    <article className="flex h-full flex-col overflow-hidden border-2 border-charcoal bg-white text-charcoal">
+    <article className="flex h-full flex-col border-2 border-charcoal bg-white text-charcoal">
+      {/* BENTO IMAGE */}
       <div className="aspect-square overflow-hidden bg-coral">
         <img
           src={item.image}
@@ -18,6 +60,7 @@ export default function MenuCard({ item }) {
       </div>
 
       <div className="flex flex-1 flex-col p-5 md:p-6">
+        {/* NAME AND PRICE */}
         <div className="flex items-start justify-between gap-3">
           <h3 className="font-display text-2xl leading-tight md:text-3xl">
             {item.name}
@@ -28,10 +71,12 @@ export default function MenuCard({ item }) {
           </span>
         </div>
 
+        {/* DESCRIPTION */}
         <p className="mt-4 leading-relaxed">
           {item.description}
         </p>
 
+        {/* MENU HIGHLIGHTS */}
         {item.tags?.length > 0 && (
           <ul
             className="mt-4 flex flex-wrap gap-2"
@@ -48,18 +93,14 @@ export default function MenuCard({ item }) {
           </ul>
         )}
 
+        {/* ALLERGEN INFORMATION */}
         <div className="mt-auto pt-4">
           <AllergenTags
             allergenInfo={item.allergenInfo}
           />
 
-          <button
-            type="button"
-            onClick={() => addToCart(item)}
-            className="mt-5 min-h-12 w-full bg-forest px-5 py-4 font-bold uppercase text-white transition-colors hover:bg-coral hover:text-charcoal focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-forest"
-          >
-            Add to Order — ${item.price.toFixed(2)}
-          </button>
+  <AddToCartButton item={item} />
+
         </div>
       </div>
     </article>

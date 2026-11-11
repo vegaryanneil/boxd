@@ -1,0 +1,124 @@
+
+.boxd-add-wrap {
+  position: relative;
+  width: 100%;
+  isolation: isolate;
+}
+
+.boxd-add-button {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: 56px;
+  padding: 14px 12px;
+  background: #f4be46;
+  color: #20201e;
+  border: 3px solid #20201e;
+  box-shadow: 4px 4px 0 #20201e;
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1.4;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background 150ms ease,
+    color 150ms ease;
+}
+
+.boxd-add-button:hover:not(:disabled) {
+  background: #ff7043;
+}
+
+.boxd-add-button:focus-visible {
+  outline: 3px solid #294b3b;
+  outline-offset: 7px;
+}
+
+.boxd-add-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.boxd-add-button.boxd-added {
+  background: #294b3b;
+  color: white;
+  animation: boxd-bounce 450ms
+    cubic-bezier(0.2, 1.5, 0.4, 1);
+}
+
+.boxd-confetti {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.boxd-confetti-piece {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 11px;
+  height: 11px;
+  border-radius: var(--radius);
+  background: var(--piece-color);
+  opacity: 0;
+  animation: boxd-confetti-fly 650ms ease-out forwards;
+  animation-delay: var(--delay);
+}
+
+@keyframes boxd-bounce {
+  0% {
+    transform: scale(0.94);
+    box-shadow: 1px 1px 0 #20201e;
+  }
+
+  45% {
+    transform: scale(1.045);
+  }
+
+  75% {
+    transform: scale(0.985);
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow: 4px 4px 0 #20201e;
+  }
+}
+
+@keyframes boxd-confetti-fly {
+  0% {
+    opacity: 1;
+    transform:
+      translate(-50%, -50%)
+      scale(0.5)
+      rotate(0deg);
+  }
+
+  70% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform:
+      translate(
+        calc(-50% + var(--x)),
+        calc(-50% + var(--y))
+      )
+      scale(1.1)
+      rotate(210deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boxd-add-button,
+  .boxd-confetti-piece {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .boxd-confetti {
+    display: none;
+  }
+}
