@@ -8,16 +8,11 @@ import {
 const PickupContext = createContext(null);
 
 export function PickupProvider({ children }) {
-  const [pickupDate, setPickupDate] =
-    useState("");
-
-  const [pickupTime, setPickupTime] =
-    useState("");
+  const [pickupDate, setPickupDate] = useState("");
+  const [pickupTime, setPickupTime] = useState("");
 
   function chooseDate(date) {
     setPickupDate(date);
-
-    // Reset time when customer changes date.
     setPickupTime("");
   }
 
@@ -48,9 +43,9 @@ export function PickupProvider({ children }) {
 export function usePickup() {
   const context = useContext(PickupContext);
 
-  if (!context) {
+  if (context === null) {
     throw new Error(
-      "usePickup must be used inside PickupProvider"
+      "usePickup must be used within PickupProvider"
     );
   }
 
