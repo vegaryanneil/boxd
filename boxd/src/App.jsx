@@ -6,6 +6,8 @@ import StorySection from "./sections/StorySection";
 import GallerySection from "./sections/GallerySection";
 import VisitSection from "./sections/VisitSection";
 import CartDrawer from "./Components/CartDrawer";
+import GlobalButtonEffects from "./Components/GlobalButtonEffects";
+import StickyCartBar from "./Components/StickyCartBar";
 
 function App() {
   return (
@@ -23,13 +25,15 @@ function App() {
     </a>
       <Navbar />
 
-      <main id="main-content" tabIndex={-1}>
+      <main id="main-content" tabIndex={-1} pb-28 md:pb-0>
+        <GlobalButtonEffects />
         <Hero />
         <MenuSection />
         <CartDrawer />
         <StorySection />
         <GallerySection />
         <VisitSection />
+        <StickyCartBar />
       </main>
       <footer className="bg-forest px-5 py-12 text-cream md:px-10">
         <div className="mx-auto max-w-7xl">

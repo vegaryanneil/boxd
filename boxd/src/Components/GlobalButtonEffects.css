@@ -1,0 +1,83 @@
+
+/* Global BOXD button feedback */
+
+button:not(:disabled) {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button.boxd-global-pop {
+  animation: boxd-global-bounce 300ms
+    cubic-bezier(0.2, 1.5, 0.4, 1);
+}
+
+@keyframes boxd-global-bounce {
+  0% {
+    transform: scale(1);
+  }
+
+  35% {
+    transform: scale(0.92);
+  }
+
+  70% {
+    transform: scale(1.045);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Geometric confetti */
+
+.boxd-global-burst {
+  position: fixed;
+  width: 0;
+  height: 0;
+  z-index: 9999;
+  pointer-events: none;
+  animation: boxd-burst-life 500ms forwards;
+}
+
+.boxd-global-piece {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border: 1px solid #20201e;
+  animation: boxd-piece-fly 500ms ease-out forwards;
+}
+
+.boxd-global-piece:nth-child(even) {
+  border-radius: 50%;
+}
+
+@keyframes boxd-piece-fly {
+  from {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  to {
+    opacity: 0;
+    transform:
+      translate(var(--x), var(--y))
+      rotate(180deg);
+  }
+}
+
+@keyframes boxd-burst-life {
+  to {
+    opacity: 0;
+  }
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  button.boxd-global-pop,
+  .boxd-global-piece,
+  .boxd-global-burst {
+    animation: none !important;
+  }
+}
+
